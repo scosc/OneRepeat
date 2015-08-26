@@ -1,0 +1,24 @@
+{
+  "name": "kendo-ui-all",
+  "homepage": "https://github.com/Landish/kendo-ui-all",
+  "authors": [
+    "Lado Lomidze <lado.lomidze@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "05e86bd5fb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "05e86bd5fb12c78a6f33f3c544870a6ded83d690"
+  },
+  "_source": "git://github.com/Landish/kendo-ui-all.git",
+  "_target": "*",
+  "_originalSource": "kendo-ui-all"
+}
