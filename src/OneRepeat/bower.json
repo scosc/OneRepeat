@@ -17,6 +17,7 @@
     "jquery-validation": "1.11.1",
     "jquery-validation-unobtrusive": "3.2.2",
     "kendo-ui-all": "*",
-    "kendo-ui": "^2015.2.813"
+    "kendo-ui": "^2015.2.813",
+    "bootstrap-material-design": "^0.3.0"
   }  
 }
