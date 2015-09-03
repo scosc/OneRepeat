@@ -8,7 +8,7 @@ namespace OneRepeat.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult watch()
         {
             return View();
         }

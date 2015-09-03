@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Listen that One song on repeat one.";
 }
 
 <script>
@@ -14,15 +14,20 @@
     //    after the API code downloads.
     var player;
     function onYouTubeIframeAPIReady() {
+
+        var v = getParameterByName('v');
+
         player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: '8VgLKXD-BoY',
+            videoId: v,
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
             }
         });
+
+        //player.Title;
     }
 
     // 4. The API will call this function when the video player is ready.
@@ -43,6 +48,13 @@
     }
     function stopVideo() {
         player.stopVideo();
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 </script>
 
@@ -112,7 +124,7 @@
         </div>
     </div>*@
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-3">
         <h2>Application uses</h2>
         <ul>
@@ -148,29 +160,29 @@
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
-</div>
-<div>
+</div>*@
+<div class="card">
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div class="card-header-centered" id="title"></div>
     <div id="player" class="card"></div>
-    <div id="instructions" class="card">
-        <div class="card-title">Instructions</div><i class="mdi-navigation-close"></i>
-        <div class="card-content">
-            Replace <strong>youtube</strong> with <span>onerepeat</span> before the <strong>.com</strong> to watch it on repeat.
-            <div >
-                <ol>
-                    <li>
-                        <span>www.<strong>youtube</strong>.com/watch?v=qybUFnY7Y8w</span>
-                    </li>
-                    <li>
-                        <span title="Would turn into"></span>
-                        <span>www.<span class="lor-logo-text">onerepeat</span>.com/watch?v=qybUFnY7Y8w</span>
-                    </li>
-                </ol>
-            </div>
-
-        </div>
-    </div>
+    <div class="card-footer"></div>
 </div>
 <div>
-    
+    <div id="instructions" class="card">
+        <span class="card-title">Instructions</span><i class="mdi-navigation-close btn-close"></i>
+        <div class="separator"></div>
+        <div class="card-body">
+            Replace <strong>youtube</strong> with <span>onerepeat</span> before the <strong>.com</strong> to watch it on repeat.
+            <ol>
+                <li>
+                    <span>www.<strong>youtube</strong>.com/watch?v=8VgLKXD-BoY</span>
+                </li>
+                <li>
+                    <span title="Would turn into"></span>
+                    <span>www.<span class="lor-logo-text">onerepeat</span>.com/watch?v=8VgLKXD-BoY</span>
+                </li>
+            </ol>
+        </div>
+
+    </div>
 </div>

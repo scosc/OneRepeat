@@ -26,6 +26,18 @@
                   asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
             <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
         </environment>*@
+        <script>
+            function parseAndPlay() {
+
+                var textBox = document.getElementById("videoPath");
+                var text = textBox.value;
+                text = text.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + "v" + "=([^&#]*)"),
+                    results = regex.exec(text);
+                results = results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                location.href = "/?v="+results;
+            }
+        </script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,10 +52,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="watch">Home</a></li>
                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
                     </ul>
+                    <form>
+                        <input class="form-group-material-grey-A700 nav-bar-control" type="text" id="videoPath" placeholder="paste youtube link here..." width="500"/>
+                        <input class="nav-bar-btn" type="button" id="okBtn" title="Go" value="Go!" onclick="parseAndPlay()" />
+                    </form>
                 </div>
             </div>
         </div>
