@@ -6,7 +6,7 @@ using Microsoft.AspNet.Mvc;
 
 namespace OneRepeat.Controllers
 {
-    public class HomeController : Controller
+    public class watchController : Controller
     {
         public IActionResult watch()
         {
