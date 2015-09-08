@@ -3,22 +3,48 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-site-verification" content="5QqhjCcXnRr0i_ZAvtTpf5mpuRogjxHJkvkzG89TXAA" />
+        <meta name="description" content="Listen any song from youtube on repeat one." />
+        <meta name="keywords" content="repeatone, onerepeat, repeat, youtube, song, songs, one, listen, watch" />
+        <meta name="robots" content="index, follow" />
+
         <title>@ViewData["Title"] - OneRepeat</title>
 
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css" />
+            <link href="~/lib/bootstrap-material-design/dist/css/material.css" rel="stylesheet" />
+            <link href="~/lib/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet" />
+            @*<a href="~/lib/bootstrap-material-design/dist/css/material.css.map">~/wwwroot/lib/bootstrap-material-design/dist/css/material.css.map</a>
+            <a href="~/lib/bootstrap-material-design/dist/css/material.min.css.map">~/wwwroot/lib/bootstrap-material-design/dist/css/material.min.css.map</a>*@
+            @*<link href="~/lib/kendo-ui/styles/kendo.common.min.css" rel="stylesheet" />
+            <link href="~/lib/kendo-ui/styles/kendo.material.min.css" rel="stylesheet" />*@
             <link rel="stylesheet" href="~/css/site.css" />
+            
         </environment>
         <environment names="Staging,Production">
-            <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
+            <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css"
                   asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
                   asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
             <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
                   asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
                   asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
+            <link href="~/lib/bootstrap-material-design/dist/css/material.css" rel="stylesheet" />
+            <link href="~/lib/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
         </environment>
+        <script>
+            function parseAndPlay() {
+
+                var textBox = document.getElementById("videoPath");
+                var text = textBox.value;
+                text = text.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + "v" + "=([^&#]*)"),
+                    results = regex.exec(text);
+                results = results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                location.href = "/?v="+results;
+            }
+        </script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,10 +59,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-controller="Home" asp-action="watch">Home</a></li>
+                        @*<li><a asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>*@
                     </ul>
+                    <form>
+                        <input class="form-group-material-grey-A700 nav-bar-control" type="text" id="videoPath" placeholder="paste youtube link here..." width="500"/>
+                        <input class="nav-bar-btn" type="button" id="okBtn" title="Go" value="Go!" onclick="parseAndPlay()" />
+                    </form>
                 </div>
             </div>
         </div>

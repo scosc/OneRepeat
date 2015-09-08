@@ -1,12 +1,23 @@
 {
   "name": "ASP.NET",
   "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "bootstrap": "3.0.0",
+    "angular": "~1.3.11",
+    "bootstrap": "3.3.2",
     "bootstrap-touch-carousel": "0.8.0",
     "hammer.js": "2.0.4",
-    "jquery": "2.1.4",
+    "jquery-1.11.1": "jquery#1.11.1",    
     "jquery-validation": "1.11.1",
-    "jquery-validation-unobtrusive": "3.2.2"
-  }
+    "jquery-validation-unobtrusive": "3.2.2",
+    "kendo-ui-all": "*",
+    "kendo-ui": "^2015.2.813",
+    "bootstrap-material-design": "^0.3.0"
+  }  
 }

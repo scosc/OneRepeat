@@ -11,11 +11,11 @@
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 /* Carousel */
 .carousel-caption {
@@ -31,4 +31,92 @@ textarea {
     .carousel-caption {
         z-index: 10 !important;
     }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 770px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 870px;
+  }
+}
+
+.separator{
+    height: 1px;
+    overflow: hidden;
+    background-color: #DFDFDF;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.card {
+    margin-top:10px;
+}
+
+.card .card-content .card-title {
+    line-height: 30px;
+}
+.card .card-title {
+    line-height: 30px;
+    color: #207bad;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 12px;
+    margin-top: 3px;
+    margin-bottom: 1px;
+    height: 36px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 1.5rem;
+    margin-top: 0px;
+    color: #DDD;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+    display: block;
+}
+
+.card i.btn-close{
+    top: 4px;
+    right: 13px;
+}
+
+.nav-bar-control {
+    width:400px;
+    color: black;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color:white;
+}
+
+.nav-bar-btn{
+    color: black;      
+    position: relative;
+    padding: 4px 30px;
+    border: 0;
+    margin: 10px 1px;
+    margin-top: 10px;
+    margin-right: 1px;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    cursor: pointer;
+    border-radius: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: rgba(255,255,255,.84);
+    transition: background-color .2s ease,box-shadow .28s cubic-bezier(.4,0,.2,1);
+    outline: none!important;
+}
 }
