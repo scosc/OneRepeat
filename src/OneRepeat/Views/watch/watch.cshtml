@@ -2,28 +2,69 @@
     ViewData["Title"] = "Listen to that One song you love most on repeat-one.";
 }
 
+  
 
+    @*<script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+        //var tag = document.createElement('script');
 
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-    <div class="mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text">
-            <h4 id="video-title"></h4>
-            <div id="player" class="card">
+        //tag.src = "https://www.youtube.com/iframe_api";
+        //var firstScriptTag = document.getElementsByTagName('script')[0];
+        //firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubeplayer', {
+                height: '390',
+                width: '640'
+            });
+
+            player.loadVideoById("bHQqvYy5KYo", 5, "large");
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                //setTimeout(stopVideo, 6000);
+                //done = true;
+                event.target.playVideo();
+            }
+        }
+        function stopVideo() {
+            player.stopVideo();
+        }
+    </script>*@
+
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__supporting-text">
+                <h4 id="video-title"></h4>
+                <div id="youtubeplayer" class="card">
+
+                </div>
+            </div>
+            <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Menu</a>
             </div>
         </div>
-        <div class="mdl-card__actions">
-            <a href="#" class="mdl-button">Menu</a>
-        </div>
-    </div>
-    @*<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn3">
-        <i class="material-icons">more_vert</i>
-    </button>
-    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
-        <li class="mdl-menu__item">Lorem</li>
-        <li class="mdl-menu__item" disabled>Ipsum</li>
-        <li class="mdl-menu__item">Dolor</li>
-    </ul>*@
+        @*<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn3">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
+            <li class="mdl-menu__item">Lorem</li>
+            <li class="mdl-menu__item" disabled>Ipsum</li>
+            <li class="mdl-menu__item">Dolor</li>
+        </ul>*@
 </section>
 
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
@@ -77,3 +118,189 @@
         </div>
     </div>
 </div>*@
+
+
+@*@section scripts{ 
+<script>
+
+        var player;
+
+        //// self executing function here
+        //(function() {
+           
+
+
+
+
+        //})();
+
+        // your page initialization code here
+        // the DOM will be available here
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+
+            var v = getParameterByName('v');
+
+            player = new YT.Player('youtubeplayer', {
+                height: '390',
+                width: '640',
+                videoId: v,
+                //playerVars: {
+                //    html5: 1
+                //},
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange                    
+                },
+                //origin: 'http://onerepeat.com'
+                //origin: 'http://localhost:17022',
+                //forceSSL: true
+
+            });
+
+            //player.Title;
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            var title = document.getElementById("video-title");
+            title.innerText = player.getVideoData().title;
+            event.target.playVideo();
+
+            //player.addEventListener('onStateChange', function (event) {
+            //    console.log("Payer state changed" + event.data);
+            //    if (event.data == YT.PlayerState.ENDED) {
+            //        //setTimeout(stopVideo, 6000);
+            //        //done = true;
+            //        event.target.playVideo();
+            //    }
+            //});
+
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+        function onPlayerStateChange(event) {
+            console.log("Payer state changed" + event.data);
+            if (event.data == YT.PlayerState.ENDED) {
+                //setTimeout(stopVideo, 6000);
+                //done = true;
+                event.target.playVideo();
+            }
+        }
+        function stopVideo() {
+            player.stopVideo();
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+</script>
+}*@
+
+
+
+
+@section scripts{
+    <script>
+
+        var player;
+
+        var videoId = 'W5JfexPxA8w';
+
+            // self executing function here
+        (function () {
+
+            // 2. This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+
+            checkPlayerState();
+
+            videoId = getParameterByName("v");
+
+        })();
+
+        function checkPlayerState() {
+            setInterval(function () {
+                if (player !== null)
+                {
+                    if (player.getPlayerState() == YT.PlayerState.ENDED) {
+                        //setTimeout(stopVideo, 6000);
+                        //done = true;
+                        //event.target.playVideo();
+                        player.playVideo();
+                    }
+
+                }
+
+            }, 100);
+        }
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubeplayer', {
+                height: '390',
+                width: '640',
+                origin: 'http://localhost:17022/',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                },
+
+            });
+        }
+
+            function onPlayerReady(event) {
+                var title = document.getElementById("video-title");
+                player.loadVideoById(videoId, 5, "large");
+                //title.innerText = player.getVideoData().title;
+                //player.playVideo();
+
+                //player.addEventListener('onStateChange', function (event) {
+                //    console.log("Payer state changed" + event.data);
+                //    if (event.data == YT.PlayerState.ENDED) {
+                //        //setTimeout(stopVideo, 6000);
+                //        //done = true;
+                //        event.target.playVideo();
+                //    }
+                //});
+
+            }
+
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                    //setTimeout(stopVideo, 6000);
+                    //done = true;
+                    //event.target.playVideo();
+                    player.playVideo();
+                }
+            }
+
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }            
+
+    </script>
+}  
