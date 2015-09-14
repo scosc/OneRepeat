@@ -20,6 +20,7 @@
     "kendo-ui": "^2015.2.813",
     "bootstrap-material-design": "^0.3.0",
     "material-design-lite": "^1.0.4",
-    "js-cookie": "2.0.3"
+    "js-cookie": "2.0.3",
+    "geolocator": "1.2.9"
   }  
 }
