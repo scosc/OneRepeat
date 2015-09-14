@@ -40,18 +40,6 @@
             <link href="~/lib/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
         </environment>
-        <script>
-            function parseAndPlay() {
-
-                var textBox = document.getElementById("videoPath");
-                var text = textBox.value;
-                text = text.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                var regex = new RegExp("[\\?&]" + "v" + "=([^&#]*)"),
-                    results = regex.exec(text);
-                results = results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-                location.href = "/?v="+results;
-            }
-        </script>
 
         <style>
             #view-source {
@@ -315,7 +303,8 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/hammer.js/hammer.js"></script>
         <script src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"></script>
-        <script src="~/lib/material-design-lite/material.js"></script>  
+        <script src="~/lib/material-design-lite/material.js"></script>
+        <script src="~/lib/js-cookie/src/js.cookie.js"></script>  
         @*<script src="https://www.youtube.com/iframe_api"></script>*@  
               
         @*<script src="~/js/site.js" asp-file-version="true"></script>*@
@@ -337,11 +326,26 @@
                 asp-fallback-src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"
                 asp-fallback-test="window.Hammer && window.Hammer.Instance">
         </script>
-        <script src="~/lib/material-design-lite/material.js" asp-file-version="true"></script>        
+        <script src="~/lib/material-design-lite/material.js" asp-file-version="true"></script>   
+        <script src="~/lib/js-cookie/src/js.cookie.js" asp-file-version="true"></script>       
         @*<script src="https://www.youtube.com/iframe_api"></script>*@  
         @*<script src="~/js/site.js" asp-file-version="true"></script>*@
     </environment>
-    
+    <script>
+            function parseAndPlay() {
+
+                var textBox = document.getElementById("videoPath");
+                var text = textBox.value;
+                text = text.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + "v" + "=([^&#]*)"),
+                    results = regex.exec(text);
+                results = results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                Cookies.set('v', results);
+                location.href = "/?v="+results;
+            }
+
+            
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>
